@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>运营补货确认</title>
+	<meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap-table.css" rel="stylesheet">
+    <style>
+    	.repment{padding: 15px;}
+    	.btns{text-align:center;padding: 15px 0;}
+        .tab-item{display:none;}
+        .tab-item.active{display:block;}
+        .bootstrap-table{margin:20px 0;}
+        .dateFormatMonth{display:none;}
+        .one{
+            padding: 0 15px; 
+            line-height: 1.65;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+	<section class="repment">
+		<div class="btns">
+	        <div class="btn-group">
+	            <button class="btn btn-primary tab" id="historyactive" value="">
+					<span class="glyphicon glyphicon-remove remove" style="display: none;color:red;"></span>
+					未结束的历史活动
+		        	<span class="glyphicon glyphicon-ok ok" style="display: none;color:greenyellow;"></span>
+		        </button>
+				<button class="btn btn-default tab" id="newactives">
+					<span class="glyphicon glyphicon-remove remove" style="display: none;color:red;"></span>
+					新活动
+		        	<span class="glyphicon glyphicon-ok ok" style="display: none;color:greenyellow;"></span>
+				</button>
+				<button class="btn btn-default tab" id="abnormalsales">
+					<span class="glyphicon glyphicon-remove remove" style="display: none;color:red;"></span>
+					异常销量处理
+		        	<span class="glyphicon glyphicon-ok ok" style="display: none;color:greenyellow;"></span>
+		        </button>
+	        </div>
+	    </div>
+	    <div class="brand_details">
+			<!--未结束的老师补货-->
+	    	<div class="tab-item active">
+	    		<div class="panel panel-default">
+	                <div class="panel-heading">品牌</div>
+	                <div class="panel-body">
+	                    <form  class="form-horizontal">
+	                        <div class="form-group">
+	                            <label class="control-label col-sm-1" style="font-weight: normal;" >品牌：</label>
+			                    <div class="col-sm-2">
+			                        <select class="form-control" style="width:180px;font-weight: normal;"  id="reportData" >
+			                        </select>
+			                    </div>
+	                        </div>
+	                    </form>
+					</div>
+					<!-- <div class="col-md-2" style="float:right;margin-top:-50px;">
+	                <label class="control-label col-sm-2" style="font-weight: normal;padding: 0;margin-top: 5px;" >品牌：</label>
+			        <div class="col-sm-2">
+			            <select class="form-control" style="width:180px;font-weight: normal;"  id="reportData1" >
+			            </select>
+			        </div>
+	            	</div> -->
+	            </div>
+		     	<div id="mcRepmentTable1Wrap">
+	            	<table id="mcRepmentTable1" class="table table-striped  table-hover table-responsive"></table>
+		        </div>
+		        <div style="text-align: center;">
+		        	<button class="btn btn-primary unhistorical">确认</button>
+		        </div>
+		        
+			</div>
+			
+			<!--新活动-->
+	     	<div class="tab-item">
+	     		<div class="panel panel-default">
+	                <div class="panel-heading">品牌</div>
+	                <div class="panel-body">
+	                    <form  class="form-horizontal">
+	                        <div class="form-group">
+	                
+	                            <label class="control-label col-sm-1" style="font-weight: normal;" >品牌：</label>
+			                    <div class="col-sm-2">
+			                        <select class="form-control" style="width:180px;font-weight: normal;"  id="reportData1" >
+			                        </select>
+			                    </div>
+	                        </div>
+	                    </form>
+	                </div>
+				</div>
+				
+		        <div id="mcRepmentTable2Wrap">
+		            <table id="mcRepmentTable2" class="table table-striped  table-hover table-responsive"></table>
+				</div>
+				<div style="text-align: center;">
+		        	<button class="btn btn-primary new_active">确认</button>
+		        </div>
+			 </div>
+			 <!--异常销量处理-->
+			 <div class="tab-item">
+					<div class="panel panel-default">
+					   <div class="panel-heading">品牌</div>
+					   <div class="panel-body">
+						   <form  class="form-horizontal">
+							   <div class="form-group">
+								   <label class="control-label col-sm-1" style="font-weight: normal;" >品牌：</label>
+								   <div class="col-sm-2">
+									   <select class="form-control" style="width:180px;font-weight: normal;"  id="reportData2" >
+									   </select>
+								   </div>
+								   <label class="control-label col-sm-1" style="font-weight: normal;" >倍数：</label>
+								   <div class="col-sm-2">
+										<select class="form-control" style="width:180px;font-weight: normal;"  id="multiple" >
+											<option value="3">>3</option>
+											<option value="5" selected>>5</option>
+											<option value="8">>8</option>
+										</select>
+									</div>
+									<label class="control-label col-sm-1" style="font-weight: normal;">时间类型：</label>
+									<div class="col-sm-3">
+										<div class="btn btn-primary col-sm-2" id="time_left">前七天</div>
+										<input class="form-control dateFormat col-sm-6"  id="mcStartDate1" style="width:150px;font-weight:normal;margin:0 5px;"  onchange="wrapObj.days()"  placeholder="请选择日期"/>
+										<div class="btn btn-primary col-sm-2" id="time_right">后七天</div>
+									</div>
+							   </div>
+							   <div class="form-group">
+									<div class="col-sm-1">                            
+												<div class="col-sm-4" style="text-align: right;">
+													<input type="checkbox" class="day_all" style="margin-top: 10px;">
+												</div>
+												<label class="control-label col-sm-8 " style="font-weight: normal;text-align:left;">全选</label>
+											</div>
+									<div class="col-sm-1">                            
+										<div class="col-sm-4" style="text-align: right;">
+											<input type="checkbox" class="day" style="margin-top: 10px;">
+										</div>
+										<label class="control-label col-sm-8 " style="font-weight: normal;text-align:left;">今天</label>
+									</div>
+									<div class="col-sm-1">                               
+										<div class="col-sm-4" style="text-align: right;">
+											<input type="checkbox" class="day_one" style="margin-top: 10px;">
+										</div>
+									<label class="control-label col-sm-8 " style="font-weight: normal;text-align:left;">前一天</label>
+									</div>
+									<div class="col-sm-1">                           
+										<div class="col-sm-4" style="text-align: right;">
+											<input type="checkbox" class="day_two" style="margin-top: 10px;">
+										</div>
+										<label class="control-label col-sm-8 " style="font-weight: normal;text-align:left;">前两天</label>
+									</div>
+									<div class="col-sm-1">                               
+										<div class="col-sm-4" style="text-align: right;">
+											<input type="checkbox" class="day_three" style="margin-top: 10px;">
+										</div>
+										<label class="control-label col-sm-8 " style="font-weight: normal;text-align:left;">前三天</label>
+									</div>
+									<div class="col-sm-1">                               
+										<div class="col-sm-4" style="text-align: right;">
+											<input type="checkbox" class="day_four" style="margin-top: 10px;">
+										</div>
+										<label class="control-label col-sm-8" style="font-weight: normal;text-align:left;">前四天</label>
+									</div>
+									<div class="col-sm-1">                               
+										<div class="col-sm-4" style="text-align: right;">
+											<input type="checkbox" class="day_five" style="margin-top: 10px;">
+										</div>
+										<label class="control-label col-sm-8 " style="font-weight: normal;text-align:left;">前五天</label>
+									</div>
+									<div class="col-sm-1">
+										<div class="col-sm-4" style="text-align: right;">
+											<input type="checkbox" class="day_six" style="margin-top: 10px;">
+										</div>
+										<label class="control-label col-sm-8 " style="font-weight: normal;text-align:left;">前六天</label>
+									</div>
+									<div class="col-sm-1">
+										<div class="col-sm-4" style="text-align: right;">
+											<input type="checkbox" class="day_server" style="margin-top: 10px;">
+										</div>
+										<label class="control-label col-sm-8"  style="font-weight: normal;text-align:left;">前七天</label>
+									</div>
+								</div>
+						   </form>
+					   </div>
+				   </div>
+				   <div id="mcRepmentTable3Wrap">
+					   <table id="mcRepmentTable3" class="table table-striped  table-hover table-responsive"></table>
+				   </div>
+				   <div style="text-align: center;">
+						 <button class="btn btn-primary abnormal_sales">确认</button>
+						 <button class="btn btn-primary key_prescribed">一键提交活动补报</button>
+				   </div>
+				</div>
+	    </div>
+	</section>
+	<section>
+		<div class="modal fade" id="model">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+				   <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">活动补报</h4>
+					</div>
+					<div class="modal-body">
+						<div class="panel-body">
+							<form  class="form-horizontal">
+								<div class="form-group">
+									<div class="col-md-12">
+										<label class="control-label col-md-2" style="font-weight: normal;" >活动名称：</label>
+										<div class="col-md-4">
+											<input type="text" id="activityName" value="" class="form-control" style="width: 220px;">
+										</div>
+										<label class="control-label col-md-2" style="font-weight: normal;" >选择活动类型：</label>
+										<div class="col-md-4">
+											<select class="form-control" style="width:220px;" id="activityType" onchange="searchFunction()">
+												<option value="">全部</option>
+												<option>聚划算</option>
+												<option>淘抢购</option>
+												<option>品牌日</option>
+												<option>大牌专享</option>
+												<option>大牌狂欢</option>
+												<option>猫超主会场</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-12" style="margin-top:10px;">
+										<label class="control-label col-md-2" style="font-weight: normal;" >活动开始时间：</label>
+										<div class="col-md-4">
+												<input class="form-control dateFormat"  id="mcStartDate1" style="width:220px;font-weight:normal;"  onchange="wrapObj.days()"  placeholder="请选择日期"/>
+										</div>
+										<label class="control-label col-md-2" style="font-weight: normal;" >结束开始时间：</label>
+										<div class="col-md-4">
+											<input class="form-control dateFormat"  id="mcStartDate1" style="width:220px;font-weight:normal;"  onchange="wrapObj.days()"  placeholder="请选择日期"/>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary active_ok">确认</button>
+						</div>
+				</div>
+			</div>
+		</div>
+		<!--每日分析-->
+		<div class="modal fade" id="myModalActivity">
+			<div class="modal-dialog" style=width:1230px;>
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title" >每日跟踪</h4>
+					</div>
+					<div class="modal-body">
+						<div style="width:1200px;height:600px;">
+							<p>商品名称：<span id="goodsName1"></span></p>
+							<p>商品编码：<span id="goodsCode1" style="margin-right:20px;"></span>商品条码：<span id="goodsNum1"></span></p>
+							<button type="button" data-type="table" id="tableBtn" class="btn  btn-success disabled" style="padding:1px 3px;margin-bottom:5px;">表格</button>
+							<button type="button" data-type="line" id="lineBtn" class="btn  btn-primary" style="padding:1px 3px;margin-bottom:5px;">库存折线图</button>
+							<button type="button" data-type="line" id="multiLineBtn" class="btn  btn-info" style="padding:1px 3px;margin-bottom:5px;">周转折线图</button>
+							<a href="javascript:;" target="_blank" class="btn  btn-danger" id="singleBrand"  style="padding:1px 3px;margin-bottom:5px;">单品分仓每日分析</a>
+							<div id="line" style="width:1200px;height:470px;display:none;"></div>
+							<table class="table table-striped tableDialog table-hover" id="tableDialog" style="font-size:12px;" ></table>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+	</section>
+</body>
+<script src="jquery-2.1.1.min.js"></script>
+<script src="bootstrap.min.js"></script>
+<script src="bootstrap-table.js"></script>
+<script src="bootstrap-table-zh-CN.js"></script>
+<script src="bootstrap-datetimepicker.js"></script>
+<script src="bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script src="repment.js"></script>
+</html>
