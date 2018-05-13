@@ -229,7 +229,7 @@ function searchFunction(){}
     function tab_confirm(){
         var brandCode = $reportData.val();
         $.ajax({
-           // url:"/maochao/survey/stock/selectBrandStatus",
+           // url:"",
             dataType:'json',
             method : 'POST',
             data : {
@@ -384,7 +384,7 @@ function searchFunction(){}
    		$mcRepmentTable1.trigger('destroy');
     	$mcRepmentTable1.bootstrapTable('destroy');
     	$mcRepmentTable1.bootstrapTable({
-    		//url : '/maochao/survey/stock/selectActivityRate',
+    		url : '',
     		method : 'POST',
             queryParams: outStockTableParams1,
     		paginationPreText:"上一页",
@@ -457,7 +457,7 @@ function searchFunction(){}
                  };
              }
             subTable1.bootstrapTable({
-                //url:'/maochao/survey/stock/selectActivitygoodsRate',
+                url:'',
                 method:'post',
                 queryParams:queryParams,
                 search: false, //不显示 搜索框
@@ -516,7 +516,7 @@ function searchFunction(){}
     	$mcRepmentTable2 = $('#mcRepmentTable2');
     	$mcRepmentTable2.bootstrapTable('destroy');
     	$mcRepmentTable2.bootstrapTable({
-   			//url : '/maochao/survey/stock/selectNewActivity',
+   		url : '',
     		method : 'POST',
             queryParams: outStockTableParams2,
     		paginationPreText:"上一页",
@@ -592,7 +592,7 @@ function searchFunction(){}
              }
             var subTable =$detail.html('<div><table class="table table-striped detail  table-hover"></table></div>').find('.table');
             subTable.bootstrapTable({
-               // url:'/maochao/survey/stock/selectNewActivitygoods',
+               url:'',
                 method:'post',
                 queryParams:queryParams,
                 search: false, //不显示 搜索框
@@ -655,7 +655,7 @@ function searchFunction(){}
     	$mcRepmentTable3 = $('#mcRepmentTable3');
     	$mcRepmentTable3.bootstrapTable('destroy');
     	$mcRepmentTable3.bootstrapTable({
-   			//url : '/maochao/survey/stock/selectAbnormalSales',
+   		url : '',
     		method : 'POST',
             queryParams: outStockTableParams3,
     		paginationPreText:"上一页",
@@ -939,7 +939,7 @@ function searchFunction(){}
             }
 
             $.ajax({
-                //url:"/maochao/survey/stock/updateActivityRate",
+                url:"",
                 dataType:'json',
                 method : 'POST',
                 data : {
@@ -972,7 +972,7 @@ function searchFunction(){}
 
             //修改活动单品表中的达成率接口
             $.ajax({
-               // url : '/maochao/survey/stock/updateActivityitemRate',
+               url : '',
                 dataType : 'json',
                 method : 'POST',
                 data : {
@@ -1001,7 +1001,7 @@ function searchFunction(){}
             var brandCode = $reportData.val();
             var status = 2;
             $.ajax({
-                //url : '/maochao/survey/stock/updateBrandStatus',
+                url : '',
                 dataType : 'json',
                 method : 'POST',
                 data : {
@@ -1057,7 +1057,7 @@ function searchFunction(){}
             var brandCode = $reportData.val();
             var status1 = 1;
             $.ajax({
-                //url : '/maochao/survey/stock/updateBrandStatus',
+                url : '',
                 dataType : 'json',
                 method : 'POST',
                 data : {
@@ -1069,7 +1069,7 @@ function searchFunction(){}
                         alert("操作成功");
                         var brandCode = $reportData.val();
                         $.ajax({
-                           // url:"/maochao/survey/stock/selectBrandStatus",
+                            url:"",
                             dataType:'json',
                             method : 'POST',
                             data : {
@@ -1119,7 +1119,7 @@ function searchFunction(){}
             //请求方法结束
             var brandCode = $reportData.val();
             $.ajax({
-               // url : '/maochao/survey/stock/selectReapplyActivity',
+                url : '',
                 dataType : 'json',
                 method : 'POST',
                 data : {
@@ -1133,7 +1133,7 @@ function searchFunction(){}
                         var brandCode = $reportData.val();
                         var status3 = 3;
                         $.ajax({
-                           // url : '/maochao/survey/stock/updateBrandStatus',
+                           url : '',
                             dataType : 'json',
                             method : 'POST',
                             data : {
@@ -1145,7 +1145,7 @@ function searchFunction(){}
                                     alert("确认成功");
                                     var brandCode = $reportData.val();
                                     $.ajax({
-                                       // url:"/maochao/survey/stock/selectBrandStatus",
+                                      url:"",
                                         dataType:'json',
                                         method : 'POST',
                                         data : {
@@ -1382,10 +1382,11 @@ function searchFunction(){}
                 "brandName" : brandName,
                 "list" :  list
              }
+	     console.log(data);
 
             //ajax接口请求
             $.ajax({
-                //url : '/maochao/survey/activity/insertReapplyActivity',
+                url : '',
                 //dataType : 'json',
                 method : 'POST',
                 contentType: "application/json;charset=utf-8",
